@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TECH3Demo.API", "TECH3Demo.API\TECH3Demo.API.csproj", "{8BB42C5B-88B4-4D32-B919-C33F0B572C0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BB42C5B-88B4-4D32-B919-C33F0B572C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB42C5B-88B4-4D32-B919-C33F0B572C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB42C5B-88B4-4D32-B919-C33F0B572C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB42C5B-88B4-4D32-B919-C33F0B572C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A539FC7-F5DD-4232-AFFC-D84B8964353D}
+	EndGlobalSection
+EndGlobal

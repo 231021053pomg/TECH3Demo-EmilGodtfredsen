@@ -1,3 +1,11 @@
-﻿# Mandag 17/05-21
+﻿# Tirsdag 18/05-21
 
-* Created project and corresponding git repo
+	* Created Domain/Model folder
+	* Created Author and Book Model
+	* Inherrited IAuthorRepository to class AuthorRepository
+	* Created DbContext (TechH3DemoDbContext)
+	*
+
+# Mandag 17/05-21
+
+	* Created project and corresponding git repo

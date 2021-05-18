@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TECH3Demo.API.Database;
 
 namespace TECH3Demo.API.Migrations
 {
     [DbContext(typeof(TechH3DemoDbContext))]
-    partial class TechH3DemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210518113823_optionals")]
+    partial class optionals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

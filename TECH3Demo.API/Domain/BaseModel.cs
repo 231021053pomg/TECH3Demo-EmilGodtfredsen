@@ -13,8 +13,8 @@ namespace TECH3Demo.API.Domain
         [JsonIgnore]
         public DateTime CreatedAt { get; set; }
         [JsonIgnore]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         [JsonIgnore]
-        public DateTime DeletedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 }

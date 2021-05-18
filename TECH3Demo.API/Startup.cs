@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TECH3Demo.API.Database;
+using TECH3Demo.API.Repositories;
 
 namespace TECH3Demo.API
 {
@@ -32,7 +33,7 @@ namespace TECH3Demo.API
             services.AddDbContext<TechH3DemoDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))
                 );
-            
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
             
 
             services.AddControllers();

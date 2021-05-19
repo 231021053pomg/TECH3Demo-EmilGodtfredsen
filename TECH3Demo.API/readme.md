@@ -1,4 +1,8 @@
-﻿# Tirsdag 18/05-21
+﻿# Onsdag 19/05-21
+
+	*
+
+# Tirsdag 18/05-21
 
 	* Created Domain/Model folder
 	* Created Author and Book Model

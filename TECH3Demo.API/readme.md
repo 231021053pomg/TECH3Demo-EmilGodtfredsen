@@ -6,6 +6,8 @@
 	* Tested simple 1+2 equals 3
 	* Tested author table with dummy data
 	* Tested GetAll() authors
+	* Tested GetAuthor(id)
+	* Created Test for Create, Update and Delete Author. Validation on the methods: CreatedAt, UpdatedAt and DeletedAt, with Assert.NotEqual(default Datetime, new author.value).
 
 # Tirsdag 18/05-21
 

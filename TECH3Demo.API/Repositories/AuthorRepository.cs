@@ -20,26 +20,51 @@ namespace TecH3Demo.API.Repositories
         {
             return await _context.Authors
                 .Where(a => a.DeletedAt == null)
+                .OrderBy(a => a.FirstName)
+                .OrderBy(a => a.LastName)
+                .Include(a => a.Books)
                 .ToListAsync();
         }
 
-        public Task<Author> GetById(int id)
+        public async Task<Author> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Authors
+                .Where(a => a.DeletedAt == null)
+                .Include(a => a.Books)
+                .FirstOrDefaultAsync(a => a.Id == id);
+                
         }
-        public Task<Author> Create(Author author)
+        public async Task<Author> Create(Author author)
         {
-            throw new NotImplementedException();
+            author.CreatedAt = DateTime.Now;
+            _context.Authors.Add(author);
+            await _context.SaveChangesAsync();
+            return author;
         }
 
-        public Task<Author> Update(int id, Author author)
+        public async Task<Author> Update(int id, Author author)
         {
-            throw new NotImplementedException();
+            var updateAuthor = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            if (updateAuthor != null)
+            {
+                updateAuthor.UpdatedAt = DateTime.Now; // Sets flag as current datetime for updated at
+                updateAuthor.FirstName = author.FirstName;
+                updateAuthor.LastName = author.LastName;
+                _context.Authors.Update(updateAuthor);
+                await _context.SaveChangesAsync();
+            }
+            return updateAuthor;
         }
 
-        public Task<Author> Delete(int id)
+        public async Task<Author> Delete(int id)
         {
-            throw new NotImplementedException();
+            var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            if (author != null)
+            {
+                author.DeletedAt = DateTime.Now; // Sets flag as current datetime for "soft delete"
+                await _context.SaveChangesAsync();
+            }
+            return author;
         }
 
     }

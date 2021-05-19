@@ -25,12 +25,13 @@ namespace TecH3Demo.Tests
 
             _context.Database.EnsureDeleted();
 
-            _context.Authors.Add(new Author { 
+            _context.Authors.Add(new Author
+            {
 
                 Id = 1,
                 FirstName = "Emil",
                 LastName = "Godtfredsen"
-            
+
             });
 
             _context.Authors.Add(new Author
@@ -68,6 +69,83 @@ namespace TecH3Demo.Tests
 
             Assert.Equal(3, authors.Count);
         }
-       
+
+        [Fact]
+        public async Task GetAuthorById_ShouldReturnAuthor_WhenAuthorExists()
+        {
+
+            // Arrange
+            AuthorRepository authorRepository = new AuthorRepository(_context);
+
+            // Act
+            var author = await authorRepository.GetById(1);
+
+            // Assert
+            Assert.NotNull(author);
+
+            Assert.Equal(1, author.Id);
+
+            Assert.Equal("Emil", author.FirstName);
+
+            Assert.Equal("Godtfredsen", author.LastName);
+        }
+
+        [Fact]
+        public async Task CreateAuthor_ShouldReturnNewAuthor_WhenCreatedAtIsNotEqualToDefaultDateTimeValue()
+        {
+
+            // Arrange
+            AuthorRepository authorRepository = new AuthorRepository(_context);
+
+            // Act
+            var author = await authorRepository.Create(new Author
+            {
+                Id = 6,
+                FirstName = "Jim",
+                LastName = "DaggertHuggert"
+            });
+
+            // Assert
+            Assert.NotNull(author);
+
+            Assert.NotEqual(DateTime.MinValue, author.CreatedAt);
+
+        }
+
+        [Fact]
+        public async Task UpdateAuthor_ShouldReturnAuthor_WhenUpdatedAtIsNotEqualToDefaultDateTimeValue()
+        {
+            // Arrange
+            AuthorRepository authorRepository = new AuthorRepository(_context);
+
+            // Act
+            var author = await authorRepository.Update(2, new Author
+            {
+                FirstName = "Egon",
+                LastName = "Olsen"
+            });
+
+            // Assert
+
+            Assert.NotNull(author);
+
+            Assert.NotEqual(DateTime.MinValue, author.UpdatedAt);
+        }
+
+        [Fact]
+        public async Task DeleteAuthor_ShouldReturnAuthor_WhenDeletedAtIsNotEqualToDefaultDateTimeValue()
+        {
+            // Arrange 
+            AuthorRepository authorRepository = new AuthorRepository(_context);
+
+            // Act 
+            var author = await authorRepository.Delete(2);
+
+            //Assert
+            Assert.NotNull(author);
+
+            Assert.NotEqual(DateTime.MinValue, author.DeletedAt);
+        }
+
     }
 }

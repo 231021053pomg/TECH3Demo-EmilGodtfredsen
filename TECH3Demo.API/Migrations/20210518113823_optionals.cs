@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TECH3Demo.API.Migrations
+namespace TecH3Demo.API.Migrations
 {
     public partial class optionals : Migration
     {

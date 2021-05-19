@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TECH3Demo.API.Domain;
+using TecH3Demo.API.Domain;
 
-namespace TECH3Demo.API.Repositories
+namespace TecH3Demo.API.Repositories
 {
     public interface IAuthorRepository
     {

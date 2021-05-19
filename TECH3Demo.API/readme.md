@@ -1,6 +1,11 @@
 ﻿# Onsdag 19/05-21
 
-	*
+	* Created test project 
+	* Referenced test project to API project
+	* Tested simple 1+1 equals 2
+	* Tested simple 1+2 equals 3
+	* Tested author table with dummy data
+	* Tested GetAll() authors
 
 # Tirsdag 18/05-21
 

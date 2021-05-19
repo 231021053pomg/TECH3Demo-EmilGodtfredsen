@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TECH3Demo.API.Domain
+namespace TecH3Demo.API.Domain
 {
     public class Author : BaseModel
     {

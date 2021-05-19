@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using TECH3Demo.API.Database;
-using TECH3Demo.API.Repositories;
+using TecH3Demo.API.Database;
+using TecH3Demo.API.Repositories;
 using Microsoft.EntityFrameworkCore;
-using TECH3Demo.API.Domain;
+using TecH3Demo.API.Domain;
 
 namespace TecH3Demo.Tests
 {

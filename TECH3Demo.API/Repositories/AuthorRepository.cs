@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TECH3Demo.API.Domain;
-using TECH3Demo.API.Database;
+using TecH3Demo.API.Domain;
+using TecH3Demo.API.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace TECH3Demo.API.Repositories
+namespace TecH3Demo.API.Repositories
 {
     public class AuthorRepository : IAuthorRepository
     {

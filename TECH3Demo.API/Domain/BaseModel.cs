@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace TECH3Demo.API.Domain
+namespace TecH3Demo.API.Domain
 {
     public class BaseModel
     {   [Key]

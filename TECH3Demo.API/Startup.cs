@@ -12,10 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TECH3Demo.API.Database;
-using TECH3Demo.API.Repositories;
+using TecH3Demo.API.Database;
+using TecH3Demo.API.Repositories;
 
-namespace TECH3Demo.API
+namespace TecH3Demo.API
 {
     public class Startup
     {

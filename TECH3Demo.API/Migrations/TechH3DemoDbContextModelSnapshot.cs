@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TECH3Demo.API.Database;
+using TecH3Demo.API.Database;
 
-namespace TECH3Demo.API.Migrations
+namespace TecH3Demo.API.Migrations
 {
     [DbContext(typeof(TechH3DemoDbContext))]
     partial class TechH3DemoDbContextModelSnapshot : ModelSnapshot

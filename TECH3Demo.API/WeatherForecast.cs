@@ -1,6 +1,6 @@
 using System;
 
-namespace TECH3Demo.API
+namespace TecH3Demo.API
 {
     public class WeatherForecast
     {

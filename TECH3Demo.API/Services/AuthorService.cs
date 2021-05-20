@@ -28,13 +28,13 @@ namespace TecH3Demo.API.Services
         }
         public async Task<Author> CreateAuthor(Author author)
         {
-            author = await __authorRepository.Create(author);
-            return author;
+            var createAuthor = await __authorRepository.Create(author);
+            return createAuthor;
         }
         public async Task<Author> UpdateAuthor(int id, Author author)
         {
-            await __authorRepository.Update(id, author);
-            return author;
+           var updateAuthor = await __authorRepository.Update(id, author);
+            return updateAuthor;
         }
         public Task<Author> DeleteAuthor(int id)
         {
@@ -42,6 +42,6 @@ namespace TecH3Demo.API.Services
             return author;
         }
 
-        
+
     }
 }

@@ -10,10 +10,9 @@ namespace TecH3Demo.API.Services
     {
         Task<List<Author>> GetAllAuthors();
         Task<Author> GetAuthorById(int id);
-        Task<Author> Create(Author author);
-        Task<Author> Update(int id, Author author);
-
-        Task<Author> Delete(int id);
+        Task<Author> CreateAuthor(Author author);
+        Task<Author> UpdateAuthor(int id, Author author);
+        Task<Author> DeleteAuthor(int id);
 
     }
 }

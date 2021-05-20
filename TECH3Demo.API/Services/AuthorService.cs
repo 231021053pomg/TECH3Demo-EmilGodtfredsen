@@ -10,26 +10,36 @@ namespace TecH3Demo.API.Services
     public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository __authorRepository;
-        public Task<List<Author>> GetAllAuthors()
+
+        public AuthorService(IAuthorRepository authorRepository)
         {
-            throw new NotImplementedException();
+            __authorRepository = authorRepository;
         }
 
-        public Task<Author> GetAuthorById(int id)
+        public async Task<List<Author>> GetAllAuthors()
         {
-            throw new NotImplementedException();
+            var authors = await __authorRepository.GetAll();
+            return authors;
         }
-        public Task<Author> Create(Author author)
+        public async Task<Author> GetAuthorById(int id)
         {
-            throw new NotImplementedException();
+            var author = await __authorRepository.GetById(id);
+            return author;
         }
-        public Task<Author> Update(int id, Author author)
+        public async Task<Author> CreateAuthor(Author author)
         {
-            throw new NotImplementedException();
+            author = await __authorRepository.Create(author);
+            return author;
         }
-        public Task<Author> Delete(int id)
+        public async Task<Author> UpdateAuthor(int id, Author author)
         {
-            throw new NotImplementedException();
+            await __authorRepository.Update(id, author);
+            return author;
+        }
+        public Task<Author> DeleteAuthor(int id)
+        {
+            var author = __authorRepository.Delete(id);
+            return author;
         }
 
         

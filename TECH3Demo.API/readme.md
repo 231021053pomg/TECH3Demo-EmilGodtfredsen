@@ -1,4 +1,13 @@
-﻿# Onsdag 19/05-21
+﻿# Torsdag 20/05-21
+
+	* Summed up testing of author repo
+	* Refactored test for Update and Delete on author service test
+	* Implemented IAuthorService
+	* Implemented AuthorService
+	* Implemented test on AuthorService GetByAuthorId
+	* Implemented test on AuthorService GetAllAuthors
+
+# Onsdag 19/05-21
 
 	* Created test project 
 	* Referenced test project to API project

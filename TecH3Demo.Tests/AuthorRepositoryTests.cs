@@ -129,7 +129,7 @@ namespace TecH3Demo.Tests
 
             Assert.NotNull(author);
 
-            Assert.NotEqual(DateTime.MinValue, author.UpdatedAt);
+            Assert.NotNull(author.UpdatedAt);
         }
 
         [Fact]
@@ -144,7 +144,7 @@ namespace TecH3Demo.Tests
             //Assert
             Assert.NotNull(author);
 
-            Assert.NotEqual(DateTime.MinValue, author.DeletedAt);
+            Assert.NotNull(author.DeletedAt);
         }
 
     }

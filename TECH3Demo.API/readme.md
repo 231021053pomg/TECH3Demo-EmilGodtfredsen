@@ -6,6 +6,9 @@
 	* Implemented AuthorService
 	* Implemented test on AuthorService GetByAuthorId
 	* Implemented test on AuthorService GetAllAuthors
+	* Implemented test on AuthorService CreateAuthor
+	* Implemented test on AuthorService UpdateAuthor
+	* Implemented test on AuthorService DeleteAuthor
 
 # Onsdag 19/05-21
 

@@ -88,5 +88,106 @@ namespace TecH3Demo.Tests
             Assert.Equal(mockAuthorList.Count, authorList.Count);
            Assert.Equal(localId, authorList[0].Id);
         }
+
+        [Fact]
+        public async Task CreateAuthor_ShouldReturnCreatedAuthor_IfAuthorIsSuccesfullyCreated()
+        {
+            int id = 1;
+            string firstName = "Jim";
+            string lastName = "Daggerthuggert";
+
+            // Arrange
+            Author mockAuthor = new Author
+            {
+                Id= id,
+                FirstName= firstName,
+                LastName= lastName,
+                CreatedAt= DateTime.Now
+            };
+
+            _authorRepositoryMock
+                .Setup(x => x.Create(mockAuthor))
+                .ReturnsAsync(mockAuthor);
+
+            // Act
+
+            var author = await _sut.CreateAuthor(mockAuthor);
+
+            // Assert
+
+            Assert.NotNull(author);
+
+            Assert.NotEqual(DateTime.MinValue, author.CreatedAt);
+
+            Assert.Equal(firstName, author.FirstName);
+
+        }
+
+        [Fact]
+        public async Task UpdateAuthor_ShouldReturnDifferentUpdatedAt_IfSuccesfullyUpdated()
+        {
+
+            int id = 1;
+            string firstName = "Jim";
+            string lastName = "Daggerthuggert";
+
+            int updateId = 2;
+            // Arrange
+            Author mockAuthor = new Author
+            {
+                Id = id,
+                FirstName = firstName,
+                LastName = lastName,
+                UpdatedAt = DateTime.Now
+            };
+
+            _authorRepositoryMock
+                .Setup(x => x.Update(updateId, mockAuthor))
+                .ReturnsAsync(mockAuthor);
+
+            // Act
+
+            var author = await _sut.UpdateAuthor(updateId, mockAuthor);
+
+            // Assert
+
+            Assert.NotNull(author);
+
+            Assert.NotEqual(DateTime.MinValue, author.UpdatedAt);
+
+        }
+
+        [Fact]
+        public async Task DeleteAuthorById_ShouldReturnDifferentDeletedAt_IfSuccesfullyDeleted()
+        {
+            int id = 1;
+            string firstName = "Jim";
+            string lastName = "Daggerthuggert";
+
+            int deleteId = 2;
+
+            // Arrange
+            Author mockAuthor = new Author
+            {
+                Id = id,
+                FirstName = firstName,
+                LastName = lastName,
+                DeletedAt = DateTime.Now
+            };
+
+            _authorRepositoryMock
+                .Setup(x => x.Delete(deleteId))
+                .ReturnsAsync(mockAuthor);
+
+            // Act
+
+            var author = await _sut.DeleteAuthor(deleteId);
+
+            // Assert
+
+            Assert.NotNull(author);
+
+            Assert.NotEqual(DateTime.MinValue, author.DeletedAt);
+        }
     }
 }

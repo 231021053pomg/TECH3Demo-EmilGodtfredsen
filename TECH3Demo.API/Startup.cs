@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TecH3Demo.API.Database;
 using TecH3Demo.API.Repositories;
+using TecH3Demo.API.Services;
 
 namespace TecH3Demo.API
 {
@@ -34,7 +35,7 @@ namespace TecH3Demo.API
                 options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))
                 );
             services.AddScoped<IAuthorRepository, AuthorRepository>();
-            
+            services.AddScoped<IAuthorService, AuthorService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

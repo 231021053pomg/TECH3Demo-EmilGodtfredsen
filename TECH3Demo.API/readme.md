@@ -1,4 +1,11 @@
-﻿# Torsdag 20/05-21
+﻿# Fredag 21/05-21
+
+	* Implemented Author controller
+	* Implemented full CRUD on author controller, with POST, GET/GET("{id}"), PUT, DELETE
+	* Implemented test with Moq on author controller
+	* Tested is Http responds with the right status codes ex. (200 Ok, 204 No Content, 404 Not Found, 500 Internal Server Error)
+
+# Torsdag 20/05-21
 
 	* Summed up testing of author repo
 	* Refactored test for Update and Delete on author service test

@@ -60,7 +60,7 @@ namespace TecH3Demo.API.Controllers
             try
             {
                 var author = await _authorService.GetAuthorById(id);
-                if(author == null)
+                if (author == null)
                 {
                     return NotFound();
                 }
@@ -136,6 +136,10 @@ namespace TecH3Demo.API.Controllers
             try
             {
                 var deleteAuthor = await _authorService.DeleteAuthor(id);
+                if(deleteAuthor == null)
+                {
+                    return NotFound("User with id: " + id + " does not exist");
+                }
                 return Ok(deleteAuthor);
             }
             catch (Exception e)

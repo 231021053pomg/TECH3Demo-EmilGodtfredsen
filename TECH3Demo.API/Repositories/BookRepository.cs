@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,29 +16,52 @@ namespace TecH3Demo.API.Repositories
         {
             _context = context;
         }
-        public Task<Book> Create(Book book)
+
+        public async Task<List<Book>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Books
+              .Where(b => b.DeletedAt == null)
+              .OrderBy(b => b.Title)
+              .ToListAsync();
         }
 
-        public Task<Book> Delete(int id)
+        public async Task<Book> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Books
+                .Where(b => b.DeletedAt == null)
+                .FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public Task<List<Book>> GetAll()
+        public async Task<Book> Create(Book book)
         {
-            throw new NotImplementedException();
+            book.CreatedAt = DateTime.Now;
+            _context.Books.Add(book);
+            await _context.SaveChangesAsync();
+            return book;
         }
 
-        public Task<Book> GetById(int id)
+        public async Task<Book> Update(Book book, int id)
         {
-            throw new NotImplementedException();
+            var updateBook = await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
+            if(updateBook != null)
+            {
+                updateBook.UpdatedAt = DateTime.Now;
+                updateBook.Title = book.Title;
+                updateBook.Published = book.Published;
+                _context.Books.Update(updateBook);
+                await _context.SaveChangesAsync();
+            }
+            return updateBook;
         }
-
-        public Task<Book> Update(Book book, int id)
+        public async Task<Book> Delete(int id)
         {
-            throw new NotImplementedException();
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
+            if(book != null)
+            {
+                book.DeletedAt = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
+            return book;
         }
     }
 }

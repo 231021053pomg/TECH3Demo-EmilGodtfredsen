@@ -11,7 +11,7 @@ namespace TecH3Demo.API.Repositories
         Task<List<Book>> GetAll();
         Task<Book> GetById(int id);
         Task<Book> Create(Book book);
-        Task<Book> Update(Book book, int id);
+        Task<Book> Update(int id, Book book);
         Task<Book> Delete(int id);
     }
 }

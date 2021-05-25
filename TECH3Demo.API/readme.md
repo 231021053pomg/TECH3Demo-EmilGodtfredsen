@@ -2,6 +2,9 @@
 
 	* Created book repository
 	* Implement first couple of tests on book repository
+	* Created React app
+	* Created GetAll authors displayd in browser
+
 # Fredag 21/05-21
 
 	* Implemented Author controller

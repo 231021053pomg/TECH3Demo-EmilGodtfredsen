@@ -1,4 +1,8 @@
-﻿# Fredag 21/05-21
+﻿# Tirsdag 25/05-21
+
+	* Created book repository
+	* Implement first couple of tests on book repository
+# Fredag 21/05-21
 
 	* Implemented Author controller
 	* Implemented full CRUD on author controller, with POST, GET/GET("{id}"), PUT, DELETE

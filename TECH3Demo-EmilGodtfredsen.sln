@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecH3Demo.API", "TECH3Demo.API\TecH3Demo.API.csproj", "{8BB42C5B-88B4-4D32-B919-C33F0B572C0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TecH3Demo.Tests", "TecH3Demo.Tests\TecH3Demo.Tests.csproj", "{8E626287-5A44-4210-BF8B-B1EAFEE8A9B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecH3Demo.Tests", "TecH3Demo.Tests\TecH3Demo.Tests.csproj", "{8E626287-5A44-4210-BF8B-B1EAFEE8A9B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TecH3Demo.Client", "TecH3Demo.Client\TecH3Demo.Client.csproj", "{AA91A316-E95E-4762-8267-8BC4EE204EB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8E626287-5A44-4210-BF8B-B1EAFEE8A9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E626287-5A44-4210-BF8B-B1EAFEE8A9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E626287-5A44-4210-BF8B-B1EAFEE8A9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA91A316-E95E-4762-8267-8BC4EE204EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA91A316-E95E-4762-8267-8BC4EE204EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA91A316-E95E-4762-8267-8BC4EE204EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA91A316-E95E-4762-8267-8BC4EE204EB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

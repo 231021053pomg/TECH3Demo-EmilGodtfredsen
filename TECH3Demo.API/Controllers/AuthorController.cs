@@ -113,7 +113,7 @@ namespace TecH3Demo.API.Controllers
 
                 if(updateAuthor == null)
                 {
-                    return Problem("Editing of author failed.");
+                    return NotFound("Editing of author not possible, Author = null.");
                 }
                 return Ok(updateAuthor);         
             }

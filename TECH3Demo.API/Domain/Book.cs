@@ -9,7 +9,6 @@ namespace TecH3Demo.API.Domain
 {
     public class Book : BaseModel
     {
-    
 
         [Required]
         [StringLength(64, ErrorMessage = "Title can't be longer than 64 chars!")]

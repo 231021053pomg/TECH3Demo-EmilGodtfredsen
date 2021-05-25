@@ -206,7 +206,7 @@ namespace TecH3Demo.Tests
             Assert.Equal(200, statusCodeResult.StatusCode);
         }
         [Fact]
-        public async Task UpdateAuthor_ShouldReturnStatusCode500InternalServerError_WhenAuthorIsNull()
+        public async Task UpdateAuthor_ShouldReturnStatusCode404BadRequest_WhenAuthorIsNull()
         {
             int updateId = 2;
             // Arrange
@@ -224,7 +224,7 @@ namespace TecH3Demo.Tests
 
             var statusCodeResult = (IStatusCodeActionResult)res;
 
-            Assert.Equal(500, statusCodeResult.StatusCode);
+            Assert.Equal(404, statusCodeResult.StatusCode);
         }
         [Fact]
         public async Task DeleteAuthor_ShouldReturnStatusCode200Ok_WhenAuthorSuccesfullyDeleted()

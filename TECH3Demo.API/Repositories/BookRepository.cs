@@ -21,7 +21,6 @@ namespace TecH3Demo.API.Repositories
         {
             return await _context.Books
               .Where(b => b.DeletedAt == null)
-              .OrderBy(b => b.Title)
               .ToListAsync();
         }
 
@@ -40,7 +39,7 @@ namespace TecH3Demo.API.Repositories
             return book;
         }
 
-        public async Task<Book> Update(Book book, int id)
+        public async Task<Book> Update(int id, Book book)
         {
             var updateBook = await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
             if(updateBook != null)

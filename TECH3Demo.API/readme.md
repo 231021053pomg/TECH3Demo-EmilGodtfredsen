@@ -1,6 +1,9 @@
 ﻿# Onsdag 26/05-21
 	
-	*
+	* Implemented create author functionality
+	* Implemented delete author functionality
+	* Implemented update author functionality
+	* Created CORS policy inside startup.cs file
 
 # Tirsdag 25/05-21
 

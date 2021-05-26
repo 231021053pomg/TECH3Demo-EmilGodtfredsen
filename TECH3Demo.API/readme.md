@@ -5,6 +5,7 @@
 	* Implemented update author functionality
 	* Created CORS policy inside startup.cs file
 	* Implenented GetById (Consol.Log(response.data))
+	* Finished testing BookRepository
 
 # Tirsdag 25/05-21
 

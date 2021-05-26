@@ -120,8 +120,29 @@ namespace TecH3Demo.Tests
                 Published = DateTime.Now
             });
 
+            // Assert
+
+            Assert.NotNull(book);
+
+            Assert.NotEqual(DateTime.MinValue, book.UpdatedAt);
         }
 
+        [Fact]
+        public async Task DeleteBook_ShouldReturnBook_WhenDeletedAtIsNotEqualToDatetimeMinValue()
+        {
+            // Arrange
+
+            BookRepository bookRepository = new BookRepository(_context);
+
+            // Act
+
+            var book = await bookRepository.Delete(2);
+
+            // Assert
+
+            Assert.NotNull(book.DeletedAt);
+
+        }
     }
 
 }

@@ -1,4 +1,8 @@
-﻿# Tirsdag 25/05-21
+﻿# Onsdag 26/05-21
+	
+	*
+
+# Tirsdag 25/05-21
 
 	* Created book repository
 	* Implement first couple of tests on book repository

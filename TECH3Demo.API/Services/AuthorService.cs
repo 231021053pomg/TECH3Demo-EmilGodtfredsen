@@ -39,6 +39,7 @@ namespace TecH3Demo.API.Services
         public Task<Author> DeleteAuthor(int id)
         {
             var author = __authorRepository.Delete(id);
+
             return author;
         }
 

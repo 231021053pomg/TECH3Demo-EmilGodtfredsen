@@ -100,7 +100,7 @@ namespace TecH3Demo.API.Controllers
 
         // PUT /api/author
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -126,9 +126,10 @@ namespace TecH3Demo.API.Controllers
 
         // DELETE /api/author
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
         public async Task<IActionResult> Delete([FromRoute] int id)
@@ -136,6 +137,7 @@ namespace TecH3Demo.API.Controllers
             try
             {
                 var deleteAuthor = await _authorService.DeleteAuthor(id);
+
                 if(deleteAuthor == null)
                 {
                     return NotFound("User with id: " + id + " does not exist");

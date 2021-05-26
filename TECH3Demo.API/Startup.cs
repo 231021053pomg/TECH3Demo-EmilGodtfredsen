@@ -25,11 +25,24 @@ namespace TecH3Demo.API
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // CORS configuration needed in order to allow angular app to communicate with server
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                    });
+            });
 
             services.AddDbContext<TechH3DemoDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))
@@ -58,6 +71,8 @@ namespace TecH3Demo.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 

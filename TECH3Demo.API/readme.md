@@ -4,6 +4,7 @@
 	* Implemented delete author functionality
 	* Implemented update author functionality
 	* Created CORS policy inside startup.cs file
+	* Implenented GetById (Consol.Log(response.data))
 
 # Tirsdag 25/05-21
 

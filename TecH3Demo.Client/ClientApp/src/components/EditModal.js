@@ -51,10 +51,10 @@ class EditModal extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button
-                            variant='dark'
+                            variant='success'
                             onClick={this.handleOk.bind(this)}
                         >
-                            <FontAwesomeIcon icon='check' fixedWidth /> OK
+                            <FontAwesomeIcon icon='check' fixedWidth /> Finished Editing
                                 </Button>
                         <Button
                             variant='danger'

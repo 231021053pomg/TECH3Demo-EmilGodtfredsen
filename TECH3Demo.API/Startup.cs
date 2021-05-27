@@ -48,8 +48,9 @@ namespace TecH3Demo.API
                 options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))
                 );
             services.AddScoped<IAuthorRepository, AuthorRepository>();
-        //    services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IBookService, BookService>(); 
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

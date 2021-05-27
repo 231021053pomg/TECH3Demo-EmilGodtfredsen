@@ -1,4 +1,12 @@
-﻿# Onsdag 26/05-21
+﻿# Torsdag 27/05-21
+
+	* Implemented soft delete filter on Books entity inside author repository
+	* Created Books component in front-end
+	* Implemented CR-D in ^component
+	* Finished full CRUD front-end in authors component
+	* Added nav-item for new Books component in front-end for route /books
+
+# Onsdag 26/05-21
 	
 	* Implemented create author functionality
 	* Implemented delete author functionality

@@ -6,6 +6,7 @@ import { Button, Table, Jumbotron, Row, Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ConfirmModal from './ConfirmModal.js';
 import EditModal from './EditModal.js';
+import BooksModal from './BooksModal.js';
 
 
 
@@ -24,6 +25,7 @@ export class Authors extends Component {
       authorId: '',
       showEditModal: false,
       author: '',
+      books: undefined,
     };
   }
 
@@ -115,23 +117,8 @@ export class Authors extends Component {
     this.setState({
       showConfirmModal: false,
       showEditModal: false,
+      showBooksModal: false,
     })
-  }
-
-  showAuthorDetails(id){
-    axios({
-      url: 'https://localhost:5001/api/author/' + id,
-      method: 'GET',
-    }).then(response => {
-      console.log(response.data)
-      this.setState({
-
-       // author: response.data,       
-      });
-    }).catch((error) => {
-      this.handleAlert(Utils.handleAxiosError(error), 'danger')
-    })
-
   }
 
   // +++ DELETE existing author(id) +++
@@ -147,7 +134,35 @@ export class Authors extends Component {
       }).catch((error) => {
         this.handleAlert(Utils.handleAxiosError(error), 'danger')
       }))
+  }
 
+  getListOfBooks(id){
+    axios({
+      url: 'https://localhost:5001/api/author/' + id,
+      method: 'GET',
+  }).then(response => {
+      this.setState({
+          books: response.data.books,
+          showBooksModal: true,
+      });
+  }).catch((error) => {
+      this.handleAlert(Utils.handleAxiosError(error), 'danger')
+  })
+  }
+
+  deleteBook(id){
+    axios({
+      url: 'https://localhost:5001/api/book/' + id,
+      method: 'DELETE',
+    }).then(response => {
+      this.setState({
+        books: '',
+        showBooksModal: false,
+      })
+      this.getListOfBooks(response.data.authorId)
+    }).catch((error) => {
+      this.handleAlert(Utils.handleAxiosError(error), 'danger')
+    })
   }
 
   okEditModalClicked() {
@@ -155,6 +170,12 @@ export class Authors extends Component {
       showEditModal: false,
     }, () => this.editAuthor())
 
+  }
+
+  okBooksModalClicked(){
+    this.setState({
+      showBooksModal: false,
+    })
   }
 
   // +++ renders table with existing authors if any is present +++
@@ -178,7 +199,6 @@ export class Authors extends Component {
               <th scope="col" className='text-nowrap'>Last Name</th>
               <th scope="col" className='text-nowrap'>Books</th>
               <th></th>
-              <th></th>
             </tr>
           </thead>
           <tbody id="tableRow">
@@ -192,8 +212,7 @@ export class Authors extends Component {
                   <td>
                     {author.lastName}
                   </td>
-                  <td><Button variant='dark'><FontAwesomeIcon icon='book' fixedWidth /> Show Books</Button></td>
-                  <td><Button onClick={() => this.showAuthorDetails(author.id)} variant='dark'><FontAwesomeIcon icon='info-circle' fixedWidth /> Show Author Details</Button></td>
+                  <td><Button onClick={() => this.getListOfBooks(author.id)} variant='dark'><FontAwesomeIcon icon='book' fixedWidth /> Show Books</Button></td>
                   <td>
                     <Button className='mr-2' onClick={() => this.handleEditAuthor(author)} variant='success'><FontAwesomeIcon icon='edit' fixedWidth /> Edit Author</Button>
                     <Button onClick={() => this.handleDeleteAuthor(author.id)} variant='danger'><FontAwesomeIcon icon='trash-alt' fixedWidth /> Delete Author</Button>
@@ -230,6 +249,13 @@ export class Authors extends Component {
             closeModal={this.closeModal.bind(this)}
             author={this.state.author}
             handleChange={this.handleChange.bind(this)}
+          />
+          <BooksModal
+          show={this.state.showBooksModal}
+          handleOk={this.okBooksModalClicked.bind(this)}
+          closeModal={this.closeModal.bind(this)}
+          books={this.state.books}
+          deleteBook={this.deleteBook.bind(this)}
           />
           <Row>
             <Col>

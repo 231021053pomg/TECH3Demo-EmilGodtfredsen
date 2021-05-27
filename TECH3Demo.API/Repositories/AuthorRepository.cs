@@ -22,7 +22,7 @@ namespace TecH3Demo.API.Repositories
                 .Where(a => a.DeletedAt == null)
                 .OrderBy(a => a.FirstName)
                 .OrderBy(a => a.LastName)
-                .Include(a => a.Books)
+                .Include(a => a.Books.Where(b => b.DeletedAt == null))
                 .ToListAsync();
         }
 
@@ -30,7 +30,7 @@ namespace TecH3Demo.API.Repositories
         {
             return await _context.Authors
                 .Where(a => a.DeletedAt == null)
-                .Include(a => a.Books)
+                .Include(a => a.Books.Where(b => b.DeletedAt == null))
                 .FirstOrDefaultAsync(a => a.Id == id);
                 
         }

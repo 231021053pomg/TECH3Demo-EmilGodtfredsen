@@ -8,7 +8,7 @@ class ShowMessage extends Component {
       return (
         <Fade appear={true}>
           <Alert variant={this.props.variant}>
-              <FontAwesomeIcon icon="info-circle" fixedWidth/> {this.props.comment}
+              <FontAwesomeIcon icon="exclamation-triangle" fixedWidth/> {this.props.comment}
           </Alert>
         </Fade>
       )

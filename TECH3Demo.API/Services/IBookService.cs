@@ -6,7 +6,7 @@ using TecH3Demo.API.Domain;
 
 namespace TecH3Demo.API.Services
 {
-    interface IBookService
+    public interface IBookService
     {
         Task<List<Book>> GetAllBooks();
         Task<Book> GetBookById(int id);

@@ -11,44 +11,45 @@ namespace TecH3Demo.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthorController : ControllerBase
+    public class BookController : ControllerBase
     {
-        private readonly IAuthorService _authorService;
-        public AuthorController(IAuthorService authorService)
+        private readonly IBookService _bookService;
+        public BookController(IBookService bookService)
         {
-            _authorService = authorService;
+            _bookService = bookService;
+
         }
 
-        // GET All /api/author
+        // GET ALL /api/book
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                var authors = await _authorService.GetAllAuthors();
-                if (authors == null)
+                var books = await _bookService.GetAllBooks();
+                if (books == null)
                 {
-                    return Problem("Returned null, unexspected behavior.");
+                    return Problem("Returned null, unexpected behavior.");
                 }
-                else if (authors.Count == 0)
+                else if (books.Count == 0)
                 {
                     return NoContent();
                 }
-                return Ok(authors);
+                return Ok(books);
+
             }
             catch (Exception e)
             {
                 return Problem(e.Message);
             }
-
         }
 
-
-        // GET By Id /api/author
+        // GET by id /api/book
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,12 +60,12 @@ namespace TecH3Demo.API.Controllers
         {
             try
             {
-                var author = await _authorService.GetAuthorById(id);
-                if (author == null)
+                var book = await _bookService.GetBookById(id);
+                if (book == null)
                 {
                     return NotFound();
                 }
-                return Ok(author);
+                return Ok(book);
             }
             catch (Exception e)
             {
@@ -72,24 +73,23 @@ namespace TecH3Demo.API.Controllers
             }
         }
 
-
-        // POST /api/author
+        // POST /api/book
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task<IActionResult> Create(Author author)
+        public async Task<IActionResult> Create(Book book)
         {
             try
             {
-                if(author == null)
+                if (book == null)
                 {
                     return BadRequest("Creation of Author failed.");
                 }
-                var newAuthor = await _authorService.CreateAuthor(author);
-                return Ok(newAuthor);
+                var newBook = await _bookService.CreateBook(book);
+                return Ok(newBook);
             }
             catch (Exception e)
             {
@@ -97,34 +97,33 @@ namespace TecH3Demo.API.Controllers
             }
         }
 
-
-        // PUT /api/author
+        // PUT /api/book
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task<IActionResult> Update([FromRoute] int id, Author author)
+        public async Task<IActionResult> Update([FromRoute] int id, Book book)
         {
             try
             {
-                var updateAuthor = await _authorService.UpdateAuthor(id, author);
+                var updateBook = await _bookService.UpdateBook(id, book);
 
-                if(updateAuthor == null)
+                if (updateBook == null)
                 {
-                    return NotFound("Editing of author not possible, Author = null.");
+                    return NotFound("Editing of book not possible, Book = null.");
                 }
-                return Ok(updateAuthor);         
+                return Ok(updateBook);
             }
             catch (Exception e)
             {
                 return Problem(e.Message);
-            } 
+            }
         }
 
 
-        // DELETE /api/author
+        // DELETE /api/book
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -136,13 +135,13 @@ namespace TecH3Demo.API.Controllers
         {
             try
             {
-                var deleteAuthor = await _authorService.DeleteAuthor(id);
+                var deleteBook = await _bookService.DeleteBook(id);
 
-                if (deleteAuthor == null)
+                if (deleteBook == null)
                 {
-                    return NotFound("User with id: " + id + " does not exist");
+                    return NotFound("Book with id: " + id + " does not exist");
                 }
-                return Ok(deleteAuthor);
+                return Ok(deleteBook);
             }
             catch (Exception e)
             {

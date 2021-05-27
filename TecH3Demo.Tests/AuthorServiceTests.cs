@@ -21,20 +21,35 @@ namespace TecH3Demo.Tests
         {
             _sut = new AuthorService(_authorRepositoryMock.Object);
         }
-        // Example test for force return of NULL
+
         [Fact]
-        public async Task GetById_ShouldReturnNullIfAuthorDoesNotExist()
+        public async Task GetAllAuthorsList_ShouldReturnListOfAuthors_IfListOfAuthorsExists()
         {
             // Arrange
+            List<Author> mockAuthorList = new List<Author>
+            {
+                  new Author{Id = 1, FirstName = "Eric", LastName = "Sherman"},
+                  new Author{Id = 2, FirstName = "David", LastName = "Schwimmer"},
+                  new Author{Id = 3, FirstName = "Jim", LastName = "Daggerthuggert"}
+            };
+
             _authorRepositoryMock
-                .Setup(x => x.GetById(It.IsAny<int>()))
-                .ReturnsAsync(() => null);
+               .Setup(x => x.GetAll())
+               .ReturnsAsync(mockAuthorList);
+
             // Act
-            var author = await _sut.GetAuthorById(123);
+
+            var authorList = await _sut.GetAllAuthors();
+            var localId = 1;
+
             // Assert
-            Assert.Null(author);
+
+            Assert.NotNull(authorList);
+
+            Assert.Equal(mockAuthorList.Count, authorList.Count);
+            Assert.Equal(localId, authorList[0].Id);
         }
-        // Example test for returning data
+
         [Fact]
         public async Task GetById_ShouldReturnAuthor_IfAuthorExists()
         {
@@ -62,32 +77,18 @@ namespace TecH3Demo.Tests
         }
 
         [Fact]
-        public async Task GetAllAuthorsList_ShouldReturnListOfAuthors_IfListOfAuthorsExists()
+        public async Task GetById_ShouldReturnNullIfAuthorDoesNotExist()
         {
             // Arrange
-            List<Author> mockAuthorList = new List<Author>
-            {
-                  new Author{Id = 1, FirstName = "Eric", LastName = "Sherman"},
-                  new Author{Id = 2, FirstName = "David", LastName = "Schwimmer"},
-                  new Author{Id = 3, FirstName = "Jim", LastName = "Daggerthuggert"}
-            };
-
             _authorRepositoryMock
-               .Setup(x => x.GetAll())
-               .ReturnsAsync(mockAuthorList);
-
+                .Setup(x => x.GetById(It.IsAny<int>()))
+                .ReturnsAsync(() => null);
             // Act
-
-            var authorList = await _sut.GetAllAuthors();
-            var localId = 1;
-
+            var author = await _sut.GetAuthorById(123);
             // Assert
-
-            Assert.NotNull(authorList);
-
-            Assert.Equal(mockAuthorList.Count, authorList.Count);
-           Assert.Equal(localId, authorList[0].Id);
+            Assert.Null(author);
         }
+        
 
         [Fact]
         public async Task CreateAuthor_ShouldReturnCreatedAuthor_IfAuthorIsSuccesfullyCreated()

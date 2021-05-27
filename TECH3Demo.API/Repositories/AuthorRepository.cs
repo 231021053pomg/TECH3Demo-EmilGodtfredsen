@@ -45,7 +45,7 @@ namespace TecH3Demo.API.Repositories
         public async Task<Author> Update(int id, Author author)
         {
             var updateAuthor = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
-            if (updateAuthor != null)
+            if(updateAuthor != null)
             {
                 updateAuthor.UpdatedAt = DateTime.Now; // Sets flag as current datetime for updated at
                 updateAuthor.FirstName = author.FirstName;

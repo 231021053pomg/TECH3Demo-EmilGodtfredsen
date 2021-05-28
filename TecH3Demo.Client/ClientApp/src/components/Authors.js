@@ -5,8 +5,10 @@ import ShowMessage from './Common/ShowMessage';
 import { Button, Table, Jumbotron, Row, Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ConfirmModal from './ConfirmModal.js';
-import EditModal from './EditModal.js';
+import EditAuthorModal from './EditAuthorModal.js';
 import BooksModal from './BooksModal.js';
+import EditBookModal from './Common/EditBookModal';
+
 
 
 
@@ -26,6 +28,11 @@ export class Authors extends Component {
       showEditModal: false,
       author: '',
       books: undefined,
+      showEditBookModal: false,
+      editBookId: '',
+      book: '',
+      tTitle: '',
+      tDate: '',
     };
   }
 
@@ -77,18 +84,23 @@ export class Authors extends Component {
   }
   // +++ UPDATE existing author (firstname and lastname) +++
   editAuthor = () => {
-    axios({
-      url: 'https://localhost:5001/api/author/' + this.state.authorId,
-      method: 'PUT',
-      data: {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName
-      }
-    }).then(response => {
+
+    if (this.state.firstName !== '' && this.state.lastName !== '') {
+      axios({
+        url: 'https://localhost:5001/api/author/' + this.state.authorId,
+        method: 'PUT',
+        data: {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName
+        }
+      }).then(response => {
+        this.getAllAuthors()
+      }).catch((error) => {
+        this.handleAlert(Utils.handleAxiosError(error), 'danger')
+      })
+    } else {
       this.getAllAuthors()
-    }).catch((error) => {
-      this.handleAlert(Utils.handleAxiosError(error), 'danger')
-    })
+    }
   }
 
   handleDeleteAuthor = (id) => {
@@ -118,6 +130,14 @@ export class Authors extends Component {
       showConfirmModal: false,
       showEditModal: false,
       showBooksModal: false,
+
+    })
+  }
+
+  closeEditBookModal() {
+    this.setState({
+      showEditBookModal: false,
+      showBooksModal: true,
     })
   }
 
@@ -136,21 +156,24 @@ export class Authors extends Component {
       }))
   }
 
-  getListOfBooks(id){
+  // +++ GET list of all books from specifik author +++
+  getListOfBooks(id) {
     axios({
       url: 'https://localhost:5001/api/author/' + id,
       method: 'GET',
-  }).then(response => {
+    }).then(response => {
       this.setState({
-          books: response.data.books,
-          showBooksModal: true,
+        books: response.data.books,
+        showBooksModal: true,
       });
-  }).catch((error) => {
+    }).catch((error) => {
       this.handleAlert(Utils.handleAxiosError(error), 'danger')
-  })
+    })
   }
 
-  deleteBook(id){
+  // +++ DELETE book +++
+
+  deleteBook(id) {
     axios({
       url: 'https://localhost:5001/api/book/' + id,
       method: 'DELETE',
@@ -165,6 +188,68 @@ export class Authors extends Component {
     })
   }
 
+  // +++ GET specefic book for editing purpose +++
+
+  getBook(id) {
+    axios({
+      url: 'https://localhost:5001/api/book/' + id,
+      method: 'GET',
+    }).then(response => {
+      this.setState({
+        book: response.data,
+      });
+    }).catch((error) => {
+      this.handleAlert(Utils.handleAxiosError(error), 'danger')
+    })
+  }
+
+  beforeUpdateBook() {
+    if (this.state.tTitle !== '' || this.state.tDate !== '') {
+      if (this.state.tDate === '') {
+        this.setState({
+          tDate: this.state.book.published
+        }, () => this.updateBook())
+      }
+    } else {
+      this.setState({
+        showBooksModal: true,
+      })
+    }
+  }
+
+  // +++ PUT updated book +++
+
+  updateBook() {
+    axios({
+      url: 'https://localhost:5001/api/book/' + this.state.editBookId,
+      method: 'PUT',
+      data: {
+        title: this.state.tTitle,
+        published: this.state.tDate,
+        authorId: this.state.book.author.id,
+      }
+    }).then(response => {
+      this.getListOfBooks(response.data.authorId)
+      this.setState({
+        showBooksModal: true,
+        tTitle: '',
+        tDate: ''
+      })
+
+    }).catch((error) => {
+      this.handleAlert(Utils.handleAxiosError(error), 'danger')
+    })
+  }
+
+  editBook(id) {
+    this.setState({
+      showEditBookModal: true,
+      editBookId: id,
+      showBooksModal: false,
+    }, () => this.getBook(id))
+
+  }
+
   okEditModalClicked() {
     this.setState({
       showEditModal: false,
@@ -172,10 +257,16 @@ export class Authors extends Component {
 
   }
 
-  okBooksModalClicked(){
+  okBooksModalClicked() {
     this.setState({
       showBooksModal: false,
     })
+  }
+
+  okEditBookModalClicked() {
+    this.setState({
+      showEditBookModal: false,
+    }, () => this.beforeUpdateBook())
   }
 
   // +++ renders table with existing authors if any is present +++
@@ -243,19 +334,27 @@ export class Authors extends Component {
             handleOk={this.okClicked.bind(this)}
             closeModal={this.closeModal.bind(this)}
           />
-          <EditModal
+          <EditAuthorModal
             show={this.state.showEditModal}
             handleOk={this.okEditModalClicked.bind(this)}
             closeModal={this.closeModal.bind(this)}
             author={this.state.author}
             handleChange={this.handleChange.bind(this)}
           />
+          <EditBookModal
+            show={this.state.showEditBookModal}
+            handleOk={this.okEditBookModalClicked.bind(this)}
+            closeModal={this.closeEditBookModal.bind(this)}
+            book={this.state.book}
+            handleChange={this.handleChange.bind(this)}
+          />
           <BooksModal
-          show={this.state.showBooksModal}
-          handleOk={this.okBooksModalClicked.bind(this)}
-          closeModal={this.closeModal.bind(this)}
-          books={this.state.books}
-          deleteBook={this.deleteBook.bind(this)}
+            show={this.state.showBooksModal}
+            handleOk={this.okBooksModalClicked.bind(this)}
+            closeModal={this.closeModal.bind(this)}
+            books={this.state.books}
+            deleteBook={this.deleteBook.bind(this)}
+            editBook={this.editBook.bind(this)}
           />
           <Row>
             <Col>

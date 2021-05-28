@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class EditModal extends Component {
+class EditAuthorModal extends Component {
 
     handleCloseModal = () => {
         this.props.closeModal()
@@ -69,4 +69,4 @@ class EditModal extends Component {
     }
 }
 
-export default EditModal;
+export default EditAuthorModal;

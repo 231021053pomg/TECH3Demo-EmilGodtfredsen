@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using TecH3Demo.API.Database;
 using TecH3Demo.API.Repositories;
 using TecH3Demo.API.Services;
+using Newtonsoft.Json;
 
 namespace TecH3Demo.API
 {
@@ -50,9 +51,13 @@ namespace TecH3Demo.API
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorService, AuthorService>();
-            services.AddScoped<IBookService, BookService>(); 
+            services.AddScoped<IBookService, BookService>();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(o =>
+                o.SerializerSettings.ReferenceLoopHandling =
+                ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TECH3Demo.API", Version = "v1" });

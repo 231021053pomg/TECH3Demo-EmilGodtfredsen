@@ -1,4 +1,11 @@
-﻿# Torsdag 27/05-21
+﻿# Fredag 28/05-21
+
+	* Implememnted include of Author in book repository
+	* ^ used Newtonsoft.Json for reference loop handling
+	* Fully implememented CRUD on books
+	* Created partially error handling, for better UX in front-end
+
+# Torsdag 27/05-21
 
 	* Implemented soft delete filter on Books entity inside author repository
 	* Created Books component in front-end

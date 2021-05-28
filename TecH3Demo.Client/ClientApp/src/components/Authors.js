@@ -36,7 +36,13 @@ export class Authors extends Component {
     };
   }
 
+// +++ NICE TO KNOW, if, should there be, any server connection problems, it is needed to manually refresh the web page
+// +++ to force component to mount again and therfore call getAllAuthors function again.
+// +++ In a perfect reality, it would havde been neat, to have some kind of socket-connection to maintain some kind of listening on the 
+// +++ server port.
+
   componentDidMount() {
+    
     this.getAllAuthors()
   }
 

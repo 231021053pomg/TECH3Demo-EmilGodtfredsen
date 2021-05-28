@@ -6,8 +6,8 @@ export class Home extends Component {
   render () {
     return (
       <div>
-        <h1>Authors</h1>
-        <p>Welcome to my Author-Book single-page client</p>
+        <h1>Home</h1>
+        <p>Is where the heart is, not work</p>
       </div>
     );
   }

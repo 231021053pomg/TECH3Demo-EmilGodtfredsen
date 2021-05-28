@@ -21,6 +21,8 @@ namespace TecH3Demo.API.Repositories
         {
             return await _context.Books
               .Where(b => b.DeletedAt == null)
+              .Include(b => b.Author)
+              .Where(b => b.Author.DeletedAt == null)
               .ToListAsync();
         }
 
@@ -28,6 +30,7 @@ namespace TecH3Demo.API.Repositories
         {
             return await _context.Books
                 .Where(b => b.DeletedAt == null)
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
